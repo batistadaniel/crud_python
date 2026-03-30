@@ -3,7 +3,7 @@
 -- Este comando cria o banco de dados
 CREATE DATABASE db_teste;
 
--- Este comando usar (inicia) o banco de dados
+-- Este comando USE (inicia) o banco de dados
 USE db_teste;
 
 -- Este comando cria a tabela de usuarios do banco de dados

@@ -3,7 +3,7 @@ from conexao import criar_conexao
 
 # funcao que insere um usuario
 def inserir_usuario(con, nome, email, senha):
-    # cursor e o que permite enviar comando sql
+    # cursor é um método que permite enviar comando sql
     cursor = con.cursor()
     # comando sql a ser executado
     sql = "INSERT INTO usuarios (nome, email, senha) VALUES (%s, %s, %s)"
@@ -20,7 +20,7 @@ def inserir_usuario(con, nome, email, senha):
 
 # funcao que ler usuarios
 def selecionar_usuarios(con):
-    # cursor e o que permite enviar comando sql
+    # cursor é um método que permite enviar comando sql
     cursor = con.cursor()
     # comando sql a ser executado
     sql = "SELECT id, nome, email FROM usuarios"
@@ -37,7 +37,7 @@ def selecionar_usuarios(con):
 
 # funcao para editar um usuario
 def atualizar_usuario(con, id, nome, email, senha):
-    # cursor e o que permite enviar comando sql
+    # cursor é um método que permite enviar comando sql
     cursor = con.cursor()
     # comando sql a ser executado
     sql = "UPDATE usuarios SET nome=%s, email=%s, senha=%s WHERE id=%s"
@@ -53,7 +53,7 @@ def atualizar_usuario(con, id, nome, email, senha):
 
 # funcao para excluir um funcionario
 def deletar_usuario(con, id):
-    # cursor e o que permite enviar comando sql
+    # cursor é um método que permite enviar comando sql
     cursor = con.cursor()
     # comando sql a ser executado
     sql = "DELETE FROM usuarios WHERE id=%s"
