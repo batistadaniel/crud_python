@@ -36,8 +36,16 @@ def main():
 
         # se opcao for 3, chama a funcao de atualizar usuario
         elif opcao == "3":
-            selecionar_usuarios(con)
+            if not selecionar_usuarios(con):
+                continue
             id = input("ID do usuário para atualizar: ")
+            cursor = con.cursor()
+            cursor.execute("SELECT id FROM usuarios WHERE id = %s", (id,))
+            usuario = cursor.fetchone()
+            cursor.close()
+            if not usuario:
+                print("❌ Usuário não encontrado!")
+                continue
             nome = input("Novo nome: ")
             email = input("Novo email: ")
             senha = input("Nova senha: ")
@@ -45,8 +53,16 @@ def main():
 
         # se opcao for 4, chama a funcao de deletar usuario
         elif opcao == "4":
-            selecionar_usuarios(con)
-            id = input("ID do usuário para deletar: ")
+            if not selecionar_usuarios(con):
+                continue
+            id = input("ID do usuário para atualizar: ")
+            cursor = con.cursor()
+            cursor.execute("SELECT id FROM usuarios WHERE id = %s", (id,))
+            usuario = cursor.fetchone()
+            cursor.close()
+            if not usuario:
+                print("❌ Usuário não encontrado!")
+                continue
             deletar_usuario(con, id)
 
         # se opcao for 0, encerra o programa
