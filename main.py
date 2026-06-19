@@ -28,7 +28,22 @@ def main():
             nome = input("Nome: ")
             email = input("Email: ")
             senha = input("Senha: ")
-            inserir_usuario(con, nome, email, senha)
+            idade = input("Idade: ")
+            print("\nSexo:")
+            print("1 - Masculino")
+            print("2 - Feminino")
+            print("3 - Indiferente")
+
+            opcao_sexo = input("Escolha uma opção: ")
+            if opcao_sexo == "1":
+                sexo = "masculino"
+            elif opcao_sexo == "2":
+                sexo = "feminino"
+            elif opcao_sexo == "3":
+                sexo = "indiferente"
+            else:
+                sexo = "indiferente"  # padrão
+            inserir_usuario(con, nome, email, senha, idade, sexo)
 
         # se opcao for 2, chama a funcao de listar usuario
         elif opcao == "2":
@@ -49,7 +64,22 @@ def main():
             nome = input("Novo nome: ")
             email = input("Novo email: ")
             senha = input("Nova senha: ")
-            atualizar_usuario(con, id, nome, email, senha)
+            idade = input("Nova idade: ")
+            print("Sexo:\n")
+            print("1 - Masculino")
+            print("2 - Feminino")
+            print("3 - Indiferente")
+
+            opcao_sexo = input("Escolha uma opção: ")
+            if opcao_sexo == "1":
+                sexo = "masculino"
+            elif opcao_sexo == "2":
+                sexo = "feminino"
+            elif opcao_sexo == "3":
+                sexo = "indiferente"
+            else:
+                sexo = "indiferente"  # padrão
+            atualizar_usuario(con, id, nome, email, senha, idade, sexo)
 
         # se opcao for 4, chama a funcao de deletar usuario
         elif opcao == "4":

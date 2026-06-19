@@ -2,13 +2,13 @@
 from conexao import criar_conexao
 
 # funcao que insere um usuario
-def inserir_usuario(con, nome, email, senha):
+def inserir_usuario(con, nome, email, senha, idade, sexo):
     # cursor é um método que permite enviar comando sql
     cursor = con.cursor()
     # comando sql a ser executado
-    sql = "INSERT INTO usuarios (nome, email, senha) VALUES (%s, %s, %s)"
+    sql = "INSERT INTO usuarios (nome, email, senha, idade, sexo) VALUES (%s, %s, %s, %s, %s)"
     # dados que vao ser inseridos no banco
-    valores = (nome, email, senha)
+    valores = (nome, email, senha, idade, sexo)
     # executa o comando sql com os dados
     cursor.execute(sql, valores)
     # commit salva no banco
@@ -23,7 +23,7 @@ def selecionar_usuarios(con):
     # cursor é um método que permite enviar comando sql
     cursor = con.cursor()
     # comando sql a ser executado
-    sql = "SELECT id, nome, email FROM usuarios"
+    sql = "SELECT id, nome, email, idade, sexo FROM usuarios"
     # executa a consulta
     cursor.execute(sql)
     # pega todos os resultados e guarda
@@ -37,20 +37,20 @@ def selecionar_usuarios(con):
     else:
         print("\n📋 Lista de usuários:")
     # percorre cada resultado
-    for (id, nome, email) in usuarios:
+    for (id, nome, email, idade, sexo) in usuarios:
         # cada linha vira uma tupla
-        print(f"{id} | {nome} | {email}")
+        print(f"{id} | {nome} | {email} | {idade} | {sexo}")
     # fecha o cursor (isso e uma boa pratica)
     cursor.close()
     return True # retorno indicando que tem usuarios
 
 # funcao para editar um usuario
-def atualizar_usuario(con, id, nome, email, senha):
+def atualizar_usuario(con, id, nome, email, senha, idade, sexo):
     
     # cursor é um método que permite enviar comando sql
     cursor = con.cursor()
     # busca os dados atuais 
-    cursor.execute("SELECT nome, email, senha FROM usuarios WHERE id = %s",(id,))
+    cursor.execute("SELECT nome, email, senha, idade, sexo FROM usuarios WHERE id = %s",(id,))
     # pega todos os resultados e guarda
     usuario = cursor.fetchone() 
 
@@ -59,7 +59,7 @@ def atualizar_usuario(con, id, nome, email, senha):
         cursor.close()
         return
     
-    nome_atual, email_atual, senha_atual = usuario
+    nome_atual, email_atual, senha_atual, idade_atual, sexo_atual = usuario
     
     if not nome:
         nome = nome_atual
@@ -69,11 +69,22 @@ def atualizar_usuario(con, id, nome, email, senha):
 
     if not senha:
         senha = senha_atual
+
+    if not idade:
+        idade = idade_atual
+
+    if not sexo:
+        sexo = sexo_atual
+
         
     
     # comando sql a ser executado
-    sql = "UPDATE usuarios SET nome=%s, email=%s, senha=%s WHERE id=%s"
-    valores = (nome, email, senha, id)
+    sql = """
+        UPDATE usuarios 
+        SET nome=%s, email=%s, senha=%s, idade=%s, sexo=%s 
+        WHERE id=%s
+    """
+    valores = (nome, email, senha, idade, sexo, id)
     # executa o comando sql com os dados
     cursor.execute(sql, valores)
     # commit salva no banco
