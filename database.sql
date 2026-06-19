@@ -14,5 +14,9 @@ CREATE TABLE usuarios (
     senha VARCHAR(100)
 );
 
+ALTER TABLE usuarios
+ADD idade INT,
+ADD sexo ENUM('masculino', 'feminino', 'indiferente');
+
 -- Para rodar no MySQL Workbench basta colar isto e clicar no icone de raio da esquerda (Ctrl + Shift + Enter). Ou para ir executando em partes deixe o clique no trecho e clique no icone de raio da direita (Ctrl + Enter)
 
