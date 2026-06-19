@@ -1,3 +1,8 @@
+# Aluno: Daniel Batista
+# Turma: 2ADS
+# Prof.: Clênio Fonseca
+# Projeto Final Python
+
 # 🚀 CRUD Python + MySQL
 
 ## 📦 Instalação
