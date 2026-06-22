@@ -9,8 +9,19 @@
 
 Instale a dependência necessária:
 
-pip install mysql-connector-python
+pip install mysql-connector-python pandas matplotlib
 
+## Rodar o CRUD 
+
+``` python
+python main.py
+```
+
+## Rodar o Grafico  
+
+``` python
+python dados.py
+```
 ---
 
 ## 🗄️ Configuração do MySQL (Workbench)
